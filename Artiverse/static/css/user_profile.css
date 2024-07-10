@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.user-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 40px;
+}
+.user-info-container h1{
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.user-profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.profile-text h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.profile-text p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+
+
+.order-history {
+    flex: 1;
+}
+
+.order-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.order-item {
+    background-color: #f4f4f4;
+    padding: 60px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: black solid;
+}
+
+.account-options {
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.favorites,
+.collections,
+.account-settings,
+.logout-support {
+    background-color: #f4f4f4;
+    border: black solid;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-settings ul {
+    list-style: none;
+    padding: 0;
+}
+
+.account-settings ul li {
+    margin-bottom: 10px;
+}
+.edit_profile-btn{
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    color: white; 
+    background-color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-container a {
+    display: block;
+    margin-top: 10px;
+    color: white; 
+    background-color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.container a:hover {
+    background-color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .user-info-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .user-profile {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .order-list {
+        grid-template-columns: 1fr;
+    }
+
+    .account-options {
+        grid-template-columns: 1fr;
+    }
+}

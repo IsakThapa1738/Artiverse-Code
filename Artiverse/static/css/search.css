@@ -1,0 +1,305 @@
+:root {
+    --surface-color: #fff;
+    --curve: 40;
+    --button-bg-color: #6A515E;
+    --button-text-color: #fff;
+    --wishlist-fill-color: #ff5252;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fef8f8;
+  }
+  
+  /* Search & Filter Section */
+  .container-search {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .search-filter {
+    background-color: #f2f2f2;
+    padding: 20px 0;
+  }
+  
+  .search-filter h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .search-filter form {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 33.33%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-filter input[type="text"],
+  .search-filter select {
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1 1 auto;
+    max-width: 300px;
+  }
+  
+  .search-filter button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    outline: 1px solid black;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-filter button:hover {
+    background-color: #000000;
+    color: white;
+  }
+  .search-filter input[type="number"] {
+    max-width: 300px;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  
+  /* Arts CSS */
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem auto;
+    /* Center the cards horizontally */
+    padding-bottom: 1rem;
+    list-style-type: none;
+    max-width: 1200px;
+    /*Set a maximum width for the cards container */
+  }
+  
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;
+    border-radius: calc(var(--curve) * 1px);
+    overflow: hidden;
+    text-decoration: none;
+    max-width: 400px;
+    /* Set a maximum width for each card */
+    /* margin: auto; Center the card */
+  }
+  
+  .card__image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--surface-color);
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card:hover .card__overlay {
+    transform: translateY(0);
+    cursor: pointer;
+  
+  }
+  
+  .card__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 2em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;
+    background-color: var(--surface-color);
+    transform: translateY(-100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card__arc {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    z-index: 1;
+  }
+  
+  .card__arc path {
+    fill: var(--surface-color);
+    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  }
+  
+  .card:hover .card__header {
+    transform: translateY(0);
+  }
+  
+  .card__thumb {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .card__title {
+    font-size: 1em;
+    margin: 0 0 .3em;
+    color: #6A515E;
+  }
+  
+  .card__status {
+    font-size: .8em;
+    color: #D7BDCA;
+  }
+  
+  .card__description {
+    padding: 0 2em 2em;
+    margin: 0;
+    color: #D7BDCA;
+    font-family: "MockFlowFont";
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  
+  .image__title {
+    position: absolute;
+    top: -2.5em;
+    left: 2em;
+    font-size: 1.2em;
+    color: #6A515E;
+    background-color: var(--surface-color);
+    padding: 0.5em;
+    border-radius: calc(var(--curve) * 1px);
+  }
+  
+  .card__buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2em 2em;
+  }
+  
+  .card__wishlist,
+  .card__buy {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  
+  .card__wishlist {
+    background-color: transparent;
+    color: var(--button-bg-color);
+    border: 1px solid var(--button-bg-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .card__wishlist.filled {
+    background-color: var(--wishlist-fill-color);
+    color: var(--button-text-color);
+  }
+  
+  .card__buy {
+    background-color: var(--button-bg-color);
+  }
+  
+  .no-result {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .no-result img {
+    max-width: 300px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+.page-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* adjust as needed */
+  box-sizing: border-box; /* ensure padding is included in width/height */
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination ul li {
+  margin: 0 5px;
+}
+
+.pagination ul li a {
+  padding: 10px;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+.pagination .disabled {
+  padding: 10px;
+  text-decoration: none;
+  color: #676767;
+  border: 1px solid #676767;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.pagination ul li a:hover,
+.pagination ul li.active a {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .search-filter form {
+    justify-content: center;
+  }
+
+  .search-filter input[type="text"],
+  .search-filter input[type="number"],
+  .search-filter select,
+  .search-filter button {
+    display: flex;
+    margin: 10px 10px;
+    width: 100%;
+    max-width: 300px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}

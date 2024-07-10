@@ -1,0 +1,119 @@
+{% extends '_base.html' %}
+{% block title %}
+Explore Artworks
+{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/explore.css' %}">
+
+<section class="search-filter">
+    <div class="container">
+        <form action="{% url 'query' %}" method="get" onsubmit="return validateForm()">
+            <input type="text" placeholder="Search by title" name="query" id="query">
+            <select name="medium" id="medium">
+                <option value="">Choose Medium</option>
+                <option value="painting" {% if medium == 'painting' %} selected {% endif %}>Painting</option>
+                <option value="sculpture" {% if medium == 'sculpture' %} selected {% endif %}>Sculpture</option>
+                <option value="photography" {% if medium == 'photography' %} selected {% endif %}>Photography</option>
+            </select>
+            <select name="genre" id="genre">
+                <option value="">Choose Genre</option>
+                <option value="landscape" {% if genre == 'landscape' %} selected {% endif %}>Landscape</option>
+                <option value="portrait" {% if genre == 'portrait' %} selected {% endif %}>Portrait</option>
+                <option value="conceptual" {% if genre == 'conceptual' %} selected {% endif %}>Conceptual</option>
+                <option value="figurative" {% if genre == 'figurative' %} selected {% endif %}>Figurative</option>
+              
+            </select>
+            <select name="style" id="style">
+                <option value="">Choose Style</option>
+                
+                <option value="modern" {% if style == 'modern' %} selected {% endif %}>Modern</option>
+                <option value="expressionism" {% if style == 'expressionism' %} selected {% endif %}>Expressionism</option>
+                <option value="realism" {% if style == 'realism' %} selected {% endif %}>Realism</option>
+                
+            </select>
+            <input type="number" placeholder="Min Price" name="price_range_min" id="price_range_min" value="{{ price_range_min }}">
+            <input type="number" placeholder="Max Price" name="price_range_max" id="price_range_max" value="{{ price_range_max }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<section>
+    <ul class="cards">
+        {% for art in arts %}
+        <li class="card">
+            <a href="{% url 'art_details' id=art.id %}">
+                <img src="{{ art.image.url }}" class="card__image" alt="{{ art.title }}">
+            </a>
+            <div class="card__overlay">
+                <div class="card__header">
+                    <h3 class="image__title">{{ art.title }}</h3>
+                    {% if art.artist %}
+                    <img class="card__thumb" src="{% if art.artist.profile_picture %}{{ art.artist.profile_picture.url }}{% else %}{% static 'img/default_profile.png' %}{% endif %}" alt="{{ art.artist.name }}">
+                    <div class="card__header-text">
+                        <h3 class="card__title">@{{ art.artist.username }}</h3>
+                        <span class="card__status">{{ art.year_created }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <p class="card__description">{{ art.description }}</p>
+                <p class="card__description">{{ art.price }}</p>
+                <div class="card__buttons">
+                    <button class="card__wishlist">♡ Wishlist</button>
+                    <button class="card__buy">Buy Now</button>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Pagination Section -->
+<div class="page-container">
+    <div class="pagination">
+      <ul>
+        <!-- Previous page link -->
+        {% if arts.has_previous %}
+          
+          <li>
+            <a href="?page={{ arts.previous_page_number }}{% if query %}&query={{ query }}{% endif %}{% if medium %}&medium={{ medium }}{% endif %}{% if genre %}&genre={{ genre_selected }}{% endif %}{% if style %}&style={{ style_selected }}{% endif %}{% if price_range_min %}&price_range_min={{ price_range_min }}{% endif %}{% if price_range_max %}&price_range_max={{ price_range_max }}{% endif %}">
+                &laquo;previous 
+            </a>
+          </li>
+        {% else %}
+  
+          <li class="disabled">
+            <span>previous</span>
+          </li>
+        {% endif %}
+  
+        <!-- Pagination numbers -->
+        {% for num in arts.paginator.page_range %}
+          <li {% if num == arts.number %}class="active"{% endif %}>
+            <a href="?page={{ num }}{% if query %}&query={{ query }}{% endif %}{% if medium %}&medium={{ medium }}{% endif %}{% if genre %}&genre={{ genre_selected }}{% endif %}{% if style %}&style={{ style_selected }}{% endif %}{% if price_range_min %}&price_range_min={{ price_range_min }}{% endif %}{% if price_range_max %}&price_range_max={{ price_range_max }}{% endif %}">
+              {{ num }}
+            </a>
+          </li>
+        {% endfor %}
+  
+        <!-- Next page link -->
+        {% if arts.has_next %}
+          <li>
+            <a href="?page={{ arts.next_page_number }}{% if query %}&query={{ query }}{% endif %}{% if medium %}&medium={{ medium }}{% endif %}{% if genre %}&genre={{ genre_selected }}{% endif %}{% if style %}&style={{ style_selected }}{% endif %}{% if price_range_min %}&price_range_min={{ price_range_min }}{% endif %}{% if price_range_max %}&price_range_max={{ price_range_max }}{% endif %}">
+              next &raquo;
+            </a>
+          </li>
+
+        {% else %}
+          <li class="disabled">
+            <span>next</span>
+          </li>
+
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  
+<script src="{% static 'js/explore.js' %}"></script>
+{% endblock %}
