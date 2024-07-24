@@ -1,0 +1,131 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f8f8;
+    color: #222;
+}
+
+
+.container {
+    max-width: 900px;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 75px 20px;
+}
+
+.signin-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.signin-image, .signin-form {
+    width: 50%;
+}
+
+.signin-image figure {
+    margin-bottom: 50px;
+}
+
+
+.signin-image img {
+    max-width: 100%;
+}
+
+.signup-image-link {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #222;
+}
+
+.form-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 33px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #999;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 10px 10px 30px;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-bottom: 1px solid #222;
+}
+
+.form-submit {
+    display: inline-block;
+    background: black;
+    color: #fff;
+    border: none;
+    padding: 15px 39px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    background: #4292dc;
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.social-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #222;
+}
+
+.socials {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socials li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    color: #222;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.socials li a:hover {
+    background: #6dabe4;
+    color: #fff;
+}
+.form-control {
+    font-family: "Font Awesome 5 Free", "Arial", sans-serif;
+    font-weight: 900; /* Font Awesome Free Solid's required weight */
+    letter-spacing: 1px;
+}
